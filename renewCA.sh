@@ -13,7 +13,7 @@ ipactl stop 2>&1 > /dev/null
 
 expire_date=`getcert list -d /etc/pki/pki-tomcat/alias -n 'subsystemCert cert-pki-ca'|grep expires|awk '{print $2}'`
 echo "CA expiration date is/was $expire_date."
-new_date=`date -d"$expire_date-1 day"`
+new_date=`date +%Y-%m-%d -d"$expire_date-1 day"`
 
 echo "Rolling back system clock to $new_date"
 timedatectl set-ntp false
